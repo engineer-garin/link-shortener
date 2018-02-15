@@ -7,7 +7,7 @@
 # because a table is analogous to a class in OO, I use CamelCase for table name.
 # use <namespace>-<TableName> convention here to allow for namespace scoping of tables (in case I want to have multiple link shortener environments running simultaneously)
 resource "aws_dynamodb_table" "url_mappings" {
-  name           = "${env_name}-URLShortenerMappings"
+  name           = "${var.env_name}-URLShortenerMappings"
   read_capacity  = 5
   write_capacity = 5
   hash_key       = "short_id"
@@ -32,6 +32,6 @@ resource "aws_dynamodb_table" "url_mappings" {
 
   tags {
     Name        = "URLShortenerMappings"
-    Environment = "${env_name}"
+    Environment = "${var.env_name}"
   }
 }
